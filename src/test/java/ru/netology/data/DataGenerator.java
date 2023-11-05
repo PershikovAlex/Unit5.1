@@ -10,7 +10,7 @@ import java.util.Random;
 public class DataGenerator {
     private static final Faker faker = new Faker(new Locale("ru"));
     private static Random random = new Random();
-    private static String[] cities = {"Москва", "Санкт-Петербург", "Казань", "Екатеринбург", "Тюмень"};
+    private static String[] cities = {"Москва", "Санкт-Петербург", "Казань", "Екатеринбург", "Тюмень", "Иркутск", "Новосибирск", "Омск", "Владивосток"};
 
     private DataGenerator() {
     }
@@ -27,10 +27,6 @@ public class DataGenerator {
 
     public static String generateFullName() {
         return faker.name().fullName();
-    }
-
-    public static String generatePhone() {
-        return faker.phoneNumber().phoneNumber();
     }
 
     public static String generatePhoneNumber() {

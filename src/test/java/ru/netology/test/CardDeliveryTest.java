@@ -1,14 +1,9 @@
 package ru.netology.test;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.selector.ByText;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.data.DataGenerator;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
@@ -18,7 +13,6 @@ class CardDeliveryTest {
     void SetUp() {
         open("http://localhost:9999");
     }
-
 
     @Test
     void shouldTest() {
