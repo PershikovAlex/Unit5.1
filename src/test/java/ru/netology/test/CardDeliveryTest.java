@@ -1,11 +1,13 @@
-package ru.netology;
+package ru.netology.test;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
+import lombok.var;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
+import ru.netology.data.DataGenerator;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -30,6 +32,10 @@ class CardDeliveryTest {
     void shouldTest() {
         String planningDate = generateDate(5, "dd.MM.yyyy");
         SelenideElement form = $(".form");
+        var validUser = DataGenerator.Registration.generateUser("ru");
+        var days = 10;
+        var firstDate = DataGenerator.generateDate(days);
+        
         $("[data-test-id=city] input").setValue("Казань");
         $("[data-test-id='date'] .input__control").doubleClick().sendKeys(planningDate);
         $("[data-test-id=name] input").setValue("Бобровский Павель");
