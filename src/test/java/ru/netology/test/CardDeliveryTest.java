@@ -1,9 +1,12 @@
 package ru.netology.test;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.data.DataGenerator;
+
+import java.time.Duration;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
@@ -29,12 +32,12 @@ class CardDeliveryTest {
         $("[data-test-id=phone] input").setValue(phoneNumber);
         $("[data-test-id=agreement]").click();
         $(".button").click();
-        $(".notification__content").shouldBe(Condition.hidden);
-        $(".notification__content").shouldHave(Condition.exactText("Встреча успешно запланирована на " + firstDate));
+        $("[data-test-id='success-notification'] .notification__content").shouldBe(Condition.hidden).shouldHave(Condition.exactText("Встреча успешно запланирована на " + firstDate), Duration.ofSeconds(15));
         $(".button").click();
         $("[data-test-id=date] input").doubleClick().sendKeys(secondDate);
         $(".button").click();
-        $(".button__text").click();
-        $(".notification__content").shouldHave(Condition.exactText("Встреча успешно запланирована на " + secondDate));
+        $("[data-test-id='replan-notification'] .notification__title").shouldHave(Condition.exactText("Необходимо подтверждение"));
+        $(".notification__content .button").click();
+        $("[data-test-id='success-notification'] .notification__content").shouldHave(Condition.exactText("Встреча успешно запланирована на " + secondDate));
     }
 }
